@@ -177,7 +177,50 @@ Claude Code 用户同理，放到 `~/.claude/skills/contract-seal-check/`。
 
 ---
 
-## 八、文件清单
+## 八、常见问题
+
+### clone / pip 失败，提示 `Connection was reset` 或超时
+
+`github.com:443` 在部分网络下不稳定，**但 git 不会自动使用系统代理**（这是个常见误解）。如果本机已有代理，给 git 单独指定：
+
+```bash
+# 只对本次操作生效
+git -c http.proxy=http://127.0.0.1:7897 clone https://github.com/nonamenohome/contract-seal-check.git
+
+# 或写入全局配置（代理关闭后需 --unset 还原）
+git config --global http.proxy  http://127.0.0.1:7897
+git config --global https.proxy http://127.0.0.1:7897
+```
+
+端口按本机代理软件实际设置改（Clash 常见 7897/7890，V2Ray 常见 10809）。
+
+### 提示缺少 PyMuPDF / Pillow / NumPy
+
+```bash
+pip install pymupdf pillow numpy
+```
+
+### 提示找不到 openssl / 跳过了验签
+
+验签是加分项，其余检查不受影响。装上 openssl 即可：
+
+- Windows：装 [Git for Windows](https://git-scm.com/download/win)，脚本会自动找到
+- macOS：`brew install openssl`
+- Linux：`apt install openssl`
+
+也可以用 `--openssl /path/to/openssl` 手动指定。
+
+### 扫描件（纸质盖章后扫描）结果不准
+
+扫描件没有可读取的签章几何信息，判定是靠图像检测，**容差参数尚未用真实样本校准**，结果仅供人工参考。详见 SKILL.md 的「支路 B」。
+
+### 中文在 Windows 控制台显示乱码
+
+脚本已内置 `sys.stdout.reconfigure(encoding='utf-8')`。若仍乱码，先执行 `chcp 65001`。
+
+---
+
+## 九、文件清单
 
 ```
 contract-seal-check/
