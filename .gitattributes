@@ -1,0 +1,10 @@
+# 统一按 LF 存储，避免跨平台（同事可能用 macOS/Linux）出现换行符差异
+* text=auto eol=lf
+
+# 二进制文件不做任何转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.zip binary
