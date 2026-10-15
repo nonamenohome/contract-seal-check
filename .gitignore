@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# 虚拟环境
+.venv/
+venv/
+env/
+ENV/
+
+# 测试与覆盖率
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# 核查产物（跑完会生成，不入库）
+*_sealcheck/
+summary.json
+核查报告.md
+evidence/
+
+# 测试用合同（含商业信息，绝不入库）
+*.pdf
+!docs/**/*.pdf
+contract*.pdf
+合同*.pdf
